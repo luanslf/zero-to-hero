@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:zero_to_hero/src/interfaces/home_repository_interface.dart';
 
-class FirebaseHomeRepository implements IHomeRepository {
+class FirestoreHomeRepository implements IHomeRepository {
   CollectionReference get tarefas => Firestore.instance.collection('/tarefas');
 
   @override
