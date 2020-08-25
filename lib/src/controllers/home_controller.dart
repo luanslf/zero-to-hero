@@ -2,6 +2,7 @@ import 'package:zero_to_hero/src/interfaces/home_repository_interface.dart';
 import 'package:zero_to_hero/src/models/tarefa_model.dart';
 import 'package:zero_to_hero/src/repositories/firestore_home_repository.dart';
 import 'package:zero_to_hero/src/repositories/hasura_home_repository.dart';
+import 'package:zero_to_hero/src/repositories/json_placeholder_home_repository.dart';
 import 'package:zero_to_hero/src/repositories/realtime_database_home_repository.dart';
 
 class HomeController {
@@ -9,11 +10,14 @@ class HomeController {
   final IHomeRepository hasuraHomeRepository = HasuraHomeRepository();
   final IHomeRepository realtimeDatabaseHomeRepository =
       RealtimeDatabaseHomeRepository();
+  final IHomeRepository jsonPlaceholderHomeRepository =
+      JsonPlaceholderHomeRepository();
 
   Future<List<Tarefa>> getTarefas() async {
     //List<Map> maps = await firestoreHomeRepository.getTarefas();
     //List<Map> maps = await realtimeDatabaseHomeRepository.getTarefas();
-    List<Map> maps = await hasuraHomeRepository.getTarefas();
+    //List<Map> maps = await hasuraHomeRepository.getTarefas();
+    List<Map> maps = await jsonPlaceholderHomeRepository.getTarefas();
     return maps.map((e) => Tarefa.fromMap(e)).toList();
   }
 
